@@ -1,0 +1,64 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/hakaiofc/Base/main/HUBORION')))()
+
+--Main Script
+local Window = OrionLib:MakeWindow({Name = "StrongSimulatorBR", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroEnabled = false})
+
+--Valor
+_G.AutoPeso = True
+
+--Função
+function AutoPeso()
+while _G.AutoPeso == true do
+local args = {
+    [1] = {
+        [1] = "UseTool",
+        [2] = 1
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Server"):FireServer(unpack(args))
+wait()
+end
+end
+
+--Valor
+_G.AutoRebirth = True
+
+--Função
+function AutoRebirth()
+while _G.AutoRebirth == true do
+  local args = {
+    [1] = {
+        [1] = "Rebirth"
+    }
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Server"):FireServer(unpack(args))
+wait()
+end
+end
+
+--Jogador
+local JogadorTab = Window:MakeTab({
+    Name = "Jogador",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+local Section = JogadorTab:AddSection({
+    Name = "Auto-Farm"
+})
+JogadorTab:AddToggle({
+    Name = "AutoPeso",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoPeso = Value
+        AutoPeso()
+    end
+})
+JogadorTab:AddToggle({
+    Name = "AutoRebirth",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoRebirth = Value
+        AutoRebirth()
+    end
+})
